@@ -25,6 +25,15 @@
       margin-top: 2rem;
       @media (max-width: 440px) { width: 100% }
     }
+    .float-container {
+      padding: 100px;
+  }
+  
+  .float-child {
+      width: 50%;
+      float: left;
+      padding: 100px;
+  }  
 
     .info {
       @include flex-content;
