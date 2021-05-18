@@ -1,0 +1,19 @@
+@mixin flex-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin round-background {
+  background: $whiteColor;
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+@mixin back-button-styles {
+  margin: $defaultMarginSpace 0;
+  font-size: 1em;
+  color: $whiteColor;
+  background: $defaultColor;
+  border-radius: 8px;
+}

@@ -1,0 +1,175 @@
+@import '../../app';
+
+.mobile-menu {
+  display: $none;
+  margin-top: 0.8rem;
+  position: absolute;
+  z-index: 749;
+  font-size: 1.5em;
+  user-select: $none;
+  cursor: $pointer;
+
+  @media (max-width: 900px) { display: block }
+}
+
+.mat-drawer-container { position: inherit }
+
+.mat-sidenav {
+  width: $appSpace;
+
+  .header {
+    display: $displayFlex;
+    flex-direction: $flexColumn;
+    border-bottom: 2px solid $defaultColor;
+    width: 319px;
+    margin: 0;
+    position: fixed;
+
+    .switch-modes {
+      width: 80px;
+      height: 40px;
+      border: 2px solid black;
+      border-radius: 25px;
+      margin: $defaultMarginSpace 3.7rem;
+      user-select: $none;
+      cursor: $pointer;
+
+      img { width: 40px }
+
+      .light-mode {
+        margin-left: 0;
+        animation: light-mode 0.5s;
+
+        @keyframes light-mode {
+          0% { transform: translateX(33px) }
+          100% { transform: translateX(0) }
+        }
+      }
+
+      .dark-mode {
+        margin-left: 37px;
+        animation: dark-mode 0.5s;
+
+        @keyframes dark-mode {
+          0% { transform: translateX(-37px) }
+          100% { transform: translateX(0) }
+        }
+      }
+    }
+
+    div {
+      display: $displayFlex;
+      align-items: $center;
+      margin: 0 0 $defaultMarginSpace 3.7rem;
+      outline: $none;
+      user-select: $none;
+      cursor: $pointer;
+
+      p {
+        font-size: 1.3em;
+        margin-left: $defaultMarginSpace;
+        transition: $transitionEaseIn;
+      }
+    }
+  }
+
+  .categories {
+    margin-top: 6rem;
+
+    .all {
+      padding-left: 3.8rem;
+      padding: 0.5rem 3.8rem;
+      outline: $none;
+      user-select: $none;
+      cursor: $pointer;
+      transition: $transitionEaseIn;
+
+      &:hover {
+        box-shadow: inset 0px 2px 300px 107px #99f3bd;
+        border-radius: 8px;
+      }
+    }
+
+    .category {
+      display: $displayFlex;
+      flex-direction: $flexColumn;
+      padding: 0.5rem;
+
+      .mat-icon {
+        @include flex-content;
+        color: $defaultColor;
+        font-size: 2em;
+      }
+
+      &__item {
+        display: $displayFlex;
+        justify-content: space-between;
+        align-items: $center;
+        padding: 0.4rem;
+        user-select: $none;
+        cursor: $pointer;
+        transition: $transitionEaseIn;
+
+        &:hover {
+          box-shadow: inset 0px 2px 300px 107px #99f3bd;
+          border-radius: 8px;
+        }
+
+        div { display: $displayFlex; margin-left: $defaultMarginSpace }
+        .arrow-downward { font-size: $defaultCategoriesSize }
+
+        p {
+          margin: 0.15rem 0 0 0.7rem;
+          font-size: $defaultCategoriesSize;
+          transition: $transitionEaseIn;
+        }
+      }
+
+      &__subcategories {
+        margin: 0.7rem 0 0 2.8rem;
+        cursor: $pointer;
+
+        div {
+          display: $displayFlex;
+          align-items: $center;
+          transition: $transitionEaseIn;
+          user-select: $none;
+          outline: $none;
+
+          &:hover {
+            box-shadow: inset 0px 2px 300px 107px #99f3bd;
+            border-radius: 4px;
+          }
+
+          .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+          }
+
+          .mat-icon,
+          .category-item {
+            font-size: 0.8em;
+            margin: 0.3rem 0;
+          }
+
+          .category-item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-left: 0.3rem;
+            transition: $transitionEaseIn;
+          }
+
+          .book-categories-length {
+            font-size: 0.7em;
+            margin-left: 0.5rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 50%;
+            border: 1px solid $defaultColor;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@import '../../app';
+
+.books {
+  @include flex-content;
+  flex-direction: $flexColumn;
+  flex-wrap: $flexWrap;
+  margin-left: $appSpace;
+
+  @media (max-width: 900px) { margin-left: 0 }
+
+  .mat-form-field {
+    margin-top: 2rem;
+    width: 30%;
+    input { color: $defaultColor }
+    @media (max-width: 1120px) { width: 60% }
+    @media (max-width: 440px) { width: 100% }
+  }
+
+  header {
+    @include flex-content;
+
+    div {
+      @include round-background;
+      text-align: $center;
+      margin-top: 2rem;
+      @media (max-width: 440px) { width: 100% }
+    }
+
+    .info {
+      @include flex-content;
+      flex-wrap: $flexWrap;
+      margin: 0;
+      padding: 0 1rem;
+      border-bottom: 2px solid $defaultColor;
+
+      @media (max-width: 530px) {
+        padding: 0;
+        border-bottom: none;
+      }
+
+      .mat-icon {
+        @include flex-content;
+        font-size: 3em;
+        color: $defaultColor;
+        outline: $none;
+        cursor: $pointer;
+
+        @media (max-width: 487px) { margin: 1rem 0 }
+      }
+
+      .books-library {
+        font-size: 3em;
+        margin-right: 1rem;
+
+        @media (max-width: 463px) { margin: 0 }
+      }
+    }
+
+    .subcategories-text {
+      font-size: 2.5em;
+      word-wrap: break-word;
+    }
+  }
+
+  .books-list {
+    display: $displayFlex;
+    justify-content: space-evenly;
+    flex-wrap: $flexWrap;
+    width: 90%;
+    margin: 2rem 0;
+    @include round-background;
+
+    @media (max-width: 440px) { width: 100% }
+
+    &__book {
+      animation: animate-zoom 0.5s;
+
+      @keyframes animate-zoom {
+        0% { transform: scale(0) }
+        100% { transform: scale(1) }
+      }
+
+      img {
+        width: 250px;
+        height: 300px;
+        margin: 1rem 2rem;
+        cursor: $pointer;
+      }
+    }
+  }
+
+  .paginator {
+    @include flex-content;
+    @include round-background;
+    width: 90%;
+    margin: 2rem 0;
+    font-size: 1.3em;
+
+    @media (max-width: 440px) { width: 100% }
+  }
+}

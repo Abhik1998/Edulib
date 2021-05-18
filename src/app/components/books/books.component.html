@@ -1,0 +1,37 @@
+<div class="books">
+  <header>
+    <div>
+      <div class="info">
+        <p class="books-library">Books Library</p>
+        <mat-icon routerLink="/add-book">add_circle_outline</mat-icon>
+      </div>
+
+      <p class="subcategories-text">{{ subCategoriesText }}</p>
+    </div>
+  </header>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput #bookName [formControl]="searchBook" (input)="searchBookHandler()" placeholder="Search">
+  </mat-form-field>
+
+  <div class="books-list">
+    <ng-container *ngIf="books.length; else emptyBooks">
+      <div *ngFor="let book of books | slice: lowValue : highValue" class="books-list__book">
+        <a [routerLink]="['/book-detail', navigateByBookName(book.name)]">
+          <img [src]="book.image">
+        </a>
+      </div>
+    </ng-container>
+    <ng-template #emptyBooks>
+      <h1>Ooops:(</h1>
+    </ng-template>
+  </div>
+
+  <mat-paginator
+    class="paginator"
+    [length]="books.length"
+    [pageSize]="pageSize"
+    (page)="getPaginatorData($event)"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,55 @@
+<div class="details">
+  <button mat-raised-button routerLink="/books" class="back-btn">
+    Go back
+  </button>
+
+  <div class="book-detail" *ngIf="book">
+    <div class="book-name-image">
+      <img [src]="book.image">
+      <p>{{ book.name }}</p>
+    </div>
+
+    <div class="book-description">
+      <p class="description">Description</p>
+      <p>{{ book.description }}</p>
+    </div>
+
+    <div class="book-info">
+      <div>
+        <p>
+          Author:
+          <strong>{{ book.author }}</strong>
+        </p>
+
+        <p>
+          Year:
+          <strong>{{ book.year }}</strong>
+        </p>
+
+        <p>
+          Pages:
+          <strong>{{ book.pages }}</strong>
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <ng-container *ngIf="book.format">
+            Format:
+            <strong>{{ book.format }}</strong>
+          </ng-container>
+        </p>
+
+        <p>
+          Download link:
+          <a [href]="book.downloadLink" target="blank">{{ book.downloadLink }}</a>
+        </p>
+
+        <p>
+          Buy link
+          <a [href]="book.buyLink" target="blank">{{ book.buyLink }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+@import '../../app';
+
+.page-not-found {
+  @include flex-content;
+  flex-direction: $flexColumn;
+  margin-left: $appSpace;
+
+  .page404 {
+    @include flex-content;
+    flex-direction: $flexColumn;
+    margin-top: $defaultMarginSpace;
+
+    img {
+      position: relative;
+      width: 600px;
+      height: auto;
+    }
+
+    h1 {
+      color: $whiteColor;
+      margin-top: -30%;
+      z-index: 3;
+
+      span { color: red }
+    }
+  }
+
+  button {
+    font-size: 1em;
+    color: $whiteColor;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDF8HJcXWfavmn9r-MLKsElyRIgt3SGI6D0A&usqp=CAU');
+    border-radius: 8px;
+    margin-top: $defaultMarginSpace;
+    padding: 0.3rem 2rem;
+    border: $none;
+    outline: $none;
+    cursor: $pointer;
+  }
+}

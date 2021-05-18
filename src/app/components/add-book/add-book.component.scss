@@ -1,0 +1,44 @@
+@import '../../app';
+
+.add-book {
+  @include flex-content;
+  flex-direction: $flexColumn;
+  flex-wrap: $flexWrap;
+  margin-left: $appSpace;
+
+  @media (max-width: 900px) { margin: 0; }
+  .back-btn { @include back-button-styles }
+
+  .form {
+    display: $displayFlex;
+    flex-direction: $flexColumn;
+    @include round-background;
+    margin: 2rem 0;
+    width: 80%;
+
+    @media (max-width: 520px) { width: 100% }
+
+    .mat-form-field {
+      width: 100%;
+      input { color: $defaultColor }
+    }
+
+    .alert {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+
+    .add-book-btn {
+      width: 15%;
+      background: #42526E;
+      color: $whiteColor;
+      font-size: 1em;
+
+      &:disabled { background: #ccc }
+      @media (max-width: 1100px) { width: 100% }
+    }
+  }
+}
