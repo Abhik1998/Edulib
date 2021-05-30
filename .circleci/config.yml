@@ -17,6 +17,9 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
     docker:
       - image: cimg/node:15.1
+        auth:
+          username: abhik5981
+          password: menus5981
         environment:
           CHROME_BIN: /usr/bin/google-chrome
     # Then run your tests!
@@ -33,6 +36,7 @@ jobs:
       - run:
           name: Run tests
           command: npm test
+      - run: echo "Hello World"
 
 workflows:
   # Below is the definition of your workflow.
