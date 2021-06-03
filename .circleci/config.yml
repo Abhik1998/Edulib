@@ -37,11 +37,11 @@ jobs:
             - gem-cache-v1
       - run:
           name: Run tests
-          command: npm test
+          command: npm build
       - save_cache:
           key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package.lock" }}
           paths:
-            - .
+            - ./
 
 workflows:
   # Below is the definition of your workflow.
