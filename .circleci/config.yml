@@ -32,7 +32,7 @@ jobs:
       #     pkg-manager: yarn 
       - run:
           name: Run tests
-          command: npm build && docker build -t edulib-${VERSION}
+          command: npm build && docker build -t edulib-2 .
 
 
 workflows:
