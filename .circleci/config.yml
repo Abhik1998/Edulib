@@ -10,32 +10,28 @@ orbs:
 
 
 jobs:
-  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:  
-    # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
-    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    one:
-      docker:
-        - image: cimg/node:15.1
-          environment:
-            CHROME_BIN: /usr/bin/google-chrome
+  one:
+    docker:
+      - image: cimg/node:15.1
+        environment:
+          CHROME_BIN: /usr/bin/google-chrome
       # Then run your tests!
       # CircleCI will report the results back to your VCS provider.
-      steps:
-        - checkout
-        - node/install-packages
+    steps:
+      - checkout
+      - node/install-packages
 
-        - run:
-            name: Run tests
-            command: npm build
-    two:
-      docker:
-        - image: circleci/golang:1.15
-          auth:
-            username: abhik5981
-            password: menus5981
-      steps:
-        - run: |
+      - run:
+          name: Run tests
+          command: npm build
+  two:
+    docker:
+      - image: circleci/golang:1.15
+        auth:
+          username: abhik5981
+          password: menus5981
+    steps:
+      - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker build -t edulib/edulib:$TAG .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
@@ -49,6 +45,6 @@ workflows:
   version: 2.1
   build:
     jobs:
-      -one
-      -two
+      - one
+      - two
 
