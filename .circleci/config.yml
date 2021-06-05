@@ -20,6 +20,7 @@ jobs:
         auth:
           username: abhik5981
           password: menus5981
+      - image: cimg/node:15.1
         environment:
           CHROME_BIN: /usr/bin/google-chrome
     # Then run your tests!
