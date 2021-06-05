@@ -16,13 +16,13 @@ jobs:
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
     docker:
+      - image: cimg/node:15.1
+        environment:
+          CHROME_BIN: /usr/bin/google-chrome
       - image: circleci/golang:1.15
         auth:
           username: abhik5981
           password: menus5981
-      - image: cimg/node:15.1
-        environment:
-          CHROME_BIN: /usr/bin/google-chrome
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
     steps:
@@ -34,8 +34,6 @@ jobs:
       # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
       # - node/install-packages:
       #     pkg-manager: yarn 
-      - setup_remote_docker:
-          version: 19.03.13
 
       - run:
           name: Run tests
