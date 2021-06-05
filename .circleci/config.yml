@@ -14,44 +14,41 @@ jobs:
   build-and-test:  
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
-    docker:
-      - image: cimg/node:15.1
-        environment:
-          CHROME_BIN: /usr/bin/google-chrome
-      - image: circleci/golang:1.15
-        auth:
-          username: abhik5981
-          password: menus5981
-    # Then run your tests!
-    # CircleCI will report the results back to your VCS provider.
-    steps:
-      # Checkout the code as the first step.
-      - checkout
-      # Next, the node orb's install-packages step will install the dependencies from a package.json.
-      # The orb install-packages step will also automatically cache them for faster future runs.
-      - node/install-packages
-      # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
-      # - node/install-packages:
-      #     pkg-manager: yarn 
+    one:
+      docker:
+        - image: cimg/node:15.1
+          environment:
+            CHROME_BIN: /usr/bin/google-chrome
+      # Then run your tests!
+      # CircleCI will report the results back to your VCS provider.
+      steps:
+        - checkout
+        - node/install-packages
 
-      - run:
-          name: Run tests
-          command: npm build
-      - run: |
+        - run:
+            name: Run tests
+            command: npm build
+    two:
+      docker:
+        - image: circleci/golang:1.15
+          auth:
+            username: abhik5981
+            password: menus5981
+      steps:
+        - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
+          docker build -t edulib/edulib:$TAG .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push CircleCI-Public/circleci-demo-docker:$TAG
-
+          docker push edulib/edulib:$TAG
 
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
   # CircleCI will run this workflow on every commit.
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
-  sample: 
+  version: 2.1
+  build:
     jobs:
-      - build-and-test
-      # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
-      # - node/test
+      -one
+      -two
+
