@@ -18,7 +18,7 @@ jobs:
     docker:
       - image: circleci/golang:1.15
         auth:
-          username: abhik1998
+          username: abhik5981
           password: menus5981
         environment:
           CHROME_BIN: /usr/bin/google-chrome
@@ -35,7 +35,7 @@ jobs:
       #     pkg-manager: yarn 
       - setup_remote_docker:
           version: 19.03.13
-          
+
       - run:
           name: Run tests
           command: npm build
