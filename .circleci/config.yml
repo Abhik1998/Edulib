@@ -33,8 +33,9 @@ jobs:
     steps:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
+          export workdir=.
           ls .
-          docker build -t edulib/edulib:$TAG . -f ./Dockerfile
+          docker build -t edulib/edulib:1 .
           echo menus5981 | docker login -u abhik5981 --password-stdin
           docker push edulib/edulib:$TAG
 
