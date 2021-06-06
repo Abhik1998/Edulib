@@ -33,6 +33,7 @@ jobs:
     steps:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
+          realpath .
           docker build -t edulib/edulib:$TAG . -f ./Dockerfile
           echo menus5981 | docker login -u abhik5981 --password-stdin
           docker push edulib/edulib:$TAG
