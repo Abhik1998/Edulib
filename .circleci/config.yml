@@ -26,7 +26,7 @@ jobs:
   #         command: npm build
   two:
     docker:
-      - image: circleci/golang:1.15
+      - image: edulib/edulib:1
         auth:
           username: abhik5981
           password: menus5981
