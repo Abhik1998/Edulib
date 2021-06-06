@@ -15,6 +15,10 @@ jobs:
       - image: cimg/node:15.1
         environment:
           CHROME_BIN: /usr/bin/google-chrome
+      - image: circleci/golang:1.15
+        auth:
+          username: abhik5981
+          password: menus5981
       # Then run your tests!
       # CircleCI will report the results back to your VCS provider.
     steps:
@@ -23,18 +27,11 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm build
-  two:
-    docker:
-      - image: circleci/golang:1.15
-        auth:
-          username: abhik5981
-          password: menus5981
-    steps:
+          command: npm build      
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           export workdir=.
-          docker build -t edulib/edulib:$TAG .
+          docker build -t edulib/edulib:$TAG . -f ./Dockerfile
           echo menus5981 | docker login -u abhik5981 --password-stdin
           docker push edulib/edulib:$TAG
 
@@ -47,5 +44,4 @@ workflows:
   build:
     jobs:
       - one
-      - two
 
