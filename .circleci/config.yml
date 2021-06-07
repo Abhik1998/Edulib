@@ -13,8 +13,8 @@ jobs:
   one:
     docker:
       - image: cimg/node:15.1
-        environment:
-          CHROME_BIN: /usr/bin/google-chrome
+        # environment:
+        #   CHROME_BIN: /usr/bin/google-chrome
       # Then run your tests!
       # CircleCI will report the results back to your VCS provider.
     steps:
@@ -33,9 +33,7 @@ jobs:
     steps:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          npm build
           echo menus5981 | docker login -u abhik5981 --password-stdin
-          docker push edulib/edulib:$TAG
 
 workflows:
   # Below is the definition of your workflow.
