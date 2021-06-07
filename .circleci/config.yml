@@ -20,6 +20,8 @@ jobs:
     steps:
       - checkout
       - node/install-packages
+      - setup_remote_docker:
+          version: 19.03.13
 
       - run:
           name: Run tests
@@ -31,6 +33,7 @@ jobs:
           username: abhik5981
           password: menus5981
     steps:
+      - checkout
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           echo menus5981 | docker login -u abhik5981 --password-stdin
