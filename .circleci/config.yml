@@ -10,15 +10,13 @@ orbs:
 
 
 jobs:
-  # one:
-  #   docker:
-  #     - image: cimg/node:15.1
-  #       environment:
-  #         CHROME_BIN: /usr/bin/google-chrome
-  #     # Then run your tests!
-  #     # CircleCI will report the results back to your VCS provider.
-  #   steps:
-  #     - checkout
+  one:
+      docker:
+        - image: circleci/golang:1.15
+      steps:
+          - checkout
+          - run: echo menus5981 | docker login -u abhik5981 --password-stdin
+
   #     - node/install-packages
 
   #     - run:
@@ -35,7 +33,7 @@ jobs:
           TAG=0.1.$CIRCLE_BUILD_NUM
           export workdir=.
           ls .
-          docker build -t edulib/edulib:1 .
+          docker build -t edulib/edulib:$TAG .
           echo menus5981 | docker login -u abhik5981 --password-stdin
           docker push edulib/edulib:$TAG
 
@@ -47,8 +45,8 @@ workflows:
   version: 2.1
   build:
     jobs:
-      # - one
-      - two
-          # requires:
-          # - one
+      - one
+      - two:
+          requires:
+          - one
 
