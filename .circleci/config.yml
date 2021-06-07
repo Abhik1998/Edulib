@@ -25,7 +25,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm build && echo menus5981 | docker login -u abhik5981 --password-stdin && docker build -t edulib:2 .
+          command: npm build
   two:
     docker:
       - image: circleci/golang:1.15
@@ -34,10 +34,13 @@ jobs:
           password: menus5981
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          echo menus5981 | docker login -u abhik5981 --password-stdin
           docker build -t edulib/edulib:$TAG .
+          echo menus5981 | docker login -u abhik5981 --password-stdin
+          docker push edulib/edulib:$TAG
 
 
 workflows:
