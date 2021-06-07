@@ -11,28 +11,29 @@ orbs:
 
 jobs:
   one:
-      docker:
-        - image: circleci/golang:1.15
-      steps:
-          - checkout
-          - run: echo menus5981 | docker login -u abhik5981 --password-stdin
+    docker:
+      - image: cimg/node:15.1
+        environment:
+          CHROME_BIN: /usr/bin/google-chrome
+      # Then run your tests!
+      # CircleCI will report the results back to your VCS provider.
+    steps:
+      - checkout
+      - node/install-packages
 
-  #     - node/install-packages
-
-  #     - run:
-  #         name: Run tests
-  #         command: npm build
+      - run:
+          name: Run tests
+          command: npm build
   two:
     docker:
-      - image: circleci/golang:1.15 
+      - image: circleci/golang:1.15
         auth:
           username: abhik5981
           password: menus5981
     steps:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          export workdir=.
-          docker build -t edulib/edulib:$TAG . -f Dockerfile
+          docker build -t edulib/edulib:$TAG .
           echo menus5981 | docker login -u abhik5981 --password-stdin
           docker push edulib/edulib:$TAG
 
@@ -46,6 +47,6 @@ workflows:
     jobs:
       - one
       - two:
-          requires:
+         requires:
           - one
 
