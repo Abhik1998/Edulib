@@ -23,7 +23,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: npm build && echo menus5981 | docker login -u abhik5981 --password-stdin && docker build -t edulib:$TAG .
+          command: npm build && echo menus5981 | docker login -u abhik5981 --password-stdin && docker build -t edulib:2 .
   two:
     docker:
       - image: circleci/golang:1.15
