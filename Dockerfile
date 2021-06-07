@@ -1,7 +1,7 @@
 FROM node:12
-WORKDIR $workdir/src
-COPY package.json $workdir/src
+WORKDIR $HOME/src
+COPY package.json $HOME/src
 RUN npm install
-COPY . $workdir/src
-CMD node index.js
+COPY . $HOME/src
 EXPOSE 8081
+CMD ["npm", "start"]
