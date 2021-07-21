@@ -16,9 +16,8 @@
             steps:
               - checkout
               - run:
-                  if [ ${BUILDBOOL} = "true" ]
+                  if [ $BUILDBOOL = "true" ]
                   then
-                    echo "Hello babes"
                     circleci-agent step halt
                   fi
               - run: echo <<parameters.variable>> 
