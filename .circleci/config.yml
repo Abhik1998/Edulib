@@ -18,7 +18,9 @@
               - run:
                   echo ${BUILDTOOL}
                   echo $BUILDTOOL
-                  if [ $BUILDTOOL = "true" ]; then
+                  if [ $BUILDTOOL = "true" ]; 
+                  then
+                    echo "Hello babes"
                     circleci-agent step halt
                   fi
               - run: echo <<parameters.variable>> 
