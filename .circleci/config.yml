@@ -16,7 +16,7 @@
             steps:
               - checkout
               - run: |
-                  if [ $BUILDBOOL = "true" ]
+                  if [ "$BUILDBOOL" = "true" ]
                   then
                       circleci-agent step halt
                   fi
