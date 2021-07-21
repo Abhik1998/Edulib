@@ -3,7 +3,7 @@
     version: 2.1
     parameters:
       build:
-        default: true
+        default: false
         type: boolean
         description: Build if e2e pretests passed
     jobs: # Jobs declared to be called in workflows
@@ -29,7 +29,7 @@
                   variable: 'Hello'
                   post-steps:
                     - run: 
-                        command: <<pipeline.parameters.build>>=false
+                        command: set <<pipeline.parameters.build>> = true
               - print_name:
                   name: 'Job2'
                   variable: 'World'
