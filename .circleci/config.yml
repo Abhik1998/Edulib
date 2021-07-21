@@ -16,8 +16,6 @@
             steps:
               - checkout
               - run:
-                  echo ${BUILDBOOL}
-                  echo $BUILDBOOL
                   if [ ${BUILDBOOL} = "true" ]
                   then
                     echo "Hello babes"
