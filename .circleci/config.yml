@@ -15,10 +15,10 @@
               - image: cimg/base:stable # This image can be different from the one declared in other job
             steps:
               - checkout
-              - run:
+              - run: |
                   if [ $BUILDBOOL = "true" ]
                   then
-                    circleci-agent step halt
+                      circleci-agent step halt
                   fi
               - run: echo <<parameters.variable>> 
     
