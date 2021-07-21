@@ -16,9 +16,9 @@
             steps:
               - checkout
               - run:
-                  echo ${BUILDTOOL}
-                  echo $BUILDTOOL
-                  if [ $BUILDTOOL = "true" ]
+                  echo ${BUILDBOOL}
+                  echo $BUILDBOOL
+                  if [ ${BUILDBOOL} = "true" ]
                   then
                     echo "Hello babes"
                     circleci-agent step halt
