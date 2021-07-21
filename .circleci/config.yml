@@ -18,6 +18,7 @@
               - run:
                   if [ ${<<pipeline.parameters.build>>} = "true" ]; then
                         circleci-agent step halt
+                  fi
               - run: echo <<parameters.variable>> 
     
     workflows:
