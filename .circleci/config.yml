@@ -15,11 +15,8 @@
               - image: cimg/base:stable # This image can be different from the one declared in other job
             steps:
               - checkout
-              - when:
-                  condition: ${<<pipeline.parameters.build>>}
-                  steps:
-                    - run: |
-                        echo ${<<pipeline.parameters.build>>}
+              - run:
+                  if [ ${<<pipeline.parameters.build>>} = "true" ]
                         circleci-agent step halt
               - run: echo <<parameters.variable>> 
     
