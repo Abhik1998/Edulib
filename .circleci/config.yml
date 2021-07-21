@@ -18,7 +18,7 @@
               - when:
                   condition: <<pipeline.parameters.build>>
                   steps:
-                    - run: circleci-agent halt
+                    - run: circleci-agent step halt
               - run: echo <<parameters.variable>> 
     
     workflows:
