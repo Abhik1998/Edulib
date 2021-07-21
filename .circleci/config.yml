@@ -3,8 +3,8 @@
     version: 2.1
     parameters:
       build:
-        default: false
-        type: boolean
+        default: BUILDBOOL
+        type: string
         description: Build if e2e pretests passed
     jobs: # Jobs declared to be called in workflows
         print_name:
@@ -27,9 +27,12 @@
               - print_name:
                   name: 'Job1'
                   variable: 'Hello'
+                  pre-steps:
+                    - run: 
+                        command: echo "export BUILDBOOL=false" >> $BASH_ENV
                   post-steps:
                     - run: 
-                        command: set build = true
+                        command: echo "export BUILDBOOL=true" >> $BASH_ENV
               - print_name:
                   name: 'Job2'
                   variable: 'World'
