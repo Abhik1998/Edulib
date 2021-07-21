@@ -16,7 +16,9 @@
             steps:
               - checkout
               - run:
-                  if [ "$BUILDTOOL" = "true" ]; then
+                  echo ${BUILDTOOL}
+                  echo $BUILDTOOL
+                  if [ $BUILDTOOL = "true" ]; then
                     circleci-agent step halt
                   fi
               - run: echo <<parameters.variable>> 
