@@ -18,7 +18,7 @@
               - run:
                   echo ${BUILDTOOL}
                   echo $BUILDTOOL
-                  if [ $BUILDTOOL = "true" ]; 
+                  if [ $BUILDTOOL = "true" ]
                   then
                     echo "Hello babes"
                     circleci-agent step halt
