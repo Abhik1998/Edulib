@@ -16,7 +16,7 @@
             steps:
               - checkout
               - when:
-                  condition: <<pipeline.parameters.build>>
+                  condition: ${<<pipeline.parameters.build>>}
                   steps:
                     - run: circleci-agent step halt
               - run: echo <<parameters.variable>> 
@@ -27,9 +27,9 @@
               - print_name:
                   name: 'Job1'
                   variable: 'Hello'
-                  # pre-steps:
-                  #   - run: 
-                  #       command: echo "export BUILDBOOL=false" >> $BASH_ENV
+                  pre-steps:
+                    - run: 
+                        command: echo "export BUILDBOOL=false" >> $BASH_ENV
                   post-steps:
                     - run: 
                         command: echo "export BUILDBOOL=true" >> $BASH_ENV
