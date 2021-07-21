@@ -1,7 +1,11 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine. 
 # See: https://circleci.com/docs/2.0/configuration-reference
     version: 2.1
-
+    parameters:
+      build:
+        default: true
+        type: boolean
+        description: Build if e2e pretests passed
     jobs: # Jobs declared to be called in workflows
         print_name:
             parameters:
@@ -11,6 +15,10 @@
               - image: cimg/base:stable # This image can be different from the one declared in other job
             steps:
               - checkout
+              - when:
+                  condition: <<pipeline.parameters.build>>
+                  steps:
+                    - run: circleci-agent halt
               - run: echo <<parameters.variable>> 
     
     workflows:
@@ -18,7 +26,10 @@
             jobs:
               - print_name:
                   name: 'Job1'
-                  variable: 'Hellow'
+                  variable: 'Hello'
+                  post-steps:
+                    - run: 
+                        command: <<pipeline.parameters.build>>=false
               - print_name:
                   name: 'Job2'
                   variable: 'World'
