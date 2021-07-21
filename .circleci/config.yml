@@ -18,7 +18,9 @@
               - when:
                   condition: ${<<pipeline.parameters.build>>}
                   steps:
-                    - run: circleci-agent step halt
+                    - run: |
+                        echo ${<<pipeline.parameters.build>>}
+                        circleci-agent step halt
               - run: echo <<parameters.variable>> 
     
     workflows:
