@@ -16,8 +16,8 @@
             steps:
               - checkout
               - run:
-                  if [ ${<<pipeline.parameters.build>>} = "true" ]; then
-                        circleci-agent step halt
+                  if [ "$BUILDTOOL" = "true" ]; then
+                    circleci-agent step halt
                   fi
               - run: echo <<parameters.variable>> 
     
