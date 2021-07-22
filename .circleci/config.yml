@@ -15,6 +15,7 @@
               - image: cimg/base:stable # This image can be different from the one declared in other job
             steps:
               - checkout
+              - run: echo ${<<pipeline.parameters.build>>}
               - run: |
                   if [ "$BUILDBOOL" = "true" ]
                   then
