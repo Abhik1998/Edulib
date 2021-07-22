@@ -17,7 +17,7 @@
               - checkout
               - run: echo ${<<pipeline.parameters.build>>}
               - run: |
-                  if [ "$BUILDBOOL" = "true" ]
+                  if [ "${<<pipeline.parameters.build>>}" = "true" ]
                   then
                       circleci-agent step halt
                   fi
