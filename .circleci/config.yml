@@ -27,6 +27,8 @@ jobs:
           command: npm build
       - snyk/scan:
           docker-image-name: cimg/node:15.1
+          fail-on-issues: false
+          monitor-on-build: true
 
 
 workflows:
